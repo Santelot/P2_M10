@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Playbook-P2-M10</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            padding: 20px;
+        }
+        .header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+        .banner {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+        .banner .title {
+            font-size: 1.2em;
+            display: flex;
+            justify-content: space-between;
+        }
+        .banner .subtitle {
+            font-size: 1em;
+            margin-top: 5px;
+            border-top: 1px solid white;
+            padding-top: 5px;
+        }
+        .content {
+            display: none;
+            padding: 10px;
+            border: 1px solid #ddd;
+            margin-bottom: 10px;
+        }
+        .section {
+            margin-bottom: 15px;
+        }
+        .step-title {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+            text-align: left;
+        }
+        .section-title {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+            text-align: right;
+        }
+        .dialogue {
+            background-color: #f0f0f0;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 10px;
+            margin: 10px 0;
+            text-align: right;
+            font-style: italic;
+        }
+        .dropdown {
+            margin-bottom: 20px;
+        }
+        .dropdown select {
+            font-size: 1em;
+            padding: 5px;
+            margin-left: 10px;
+        }
+        .time-title {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+        .note {
+            background-color: #ffeb3b;
+            padding: 10px;
+            border: 1px solid #ddd;
+            margin-bottom: 10px;
+        }
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+        .nav-buttons button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+        .nav-buttons button:disabled {
+            background-color: #ddd;
+            cursor: not-allowed;
+        }
+    </style>
+    <script>
+        function toggleContent(id) {
+            var content = document.getElementById(id);
+            if (content.style.display === "none") {
+                content.style.display = "block";
+            } else {
+                content.style.display = "none";
+            }
+        }
+
+        function updateActivities() {
+            var selectedTime = document.getElementById('time-select').value;
+            document.getElementById('selected-time').innerText = "Tiempo efectivo de clase: " + selectedTime + " minutos";
+
+            // Mostrar todas las actividades
+            for (var i = 0; i < 8; i++) {
+                document.getElementById('activity-' + i).style.display = 'block';
+            }
+
+            // Ajustes según el tiempo seleccionado
+            if (selectedTime === '45') {
+                document.getElementById('activity-2').style.display = 'none'; // Eliminar actividad 2 para 45 minutos
+            } else if (selectedTime === '40') {
+                document.getElementById('activity-2').style.display = 'none'; // Eliminar actividad 2 para 40 minutos
+                document.getElementById('activity-4').style.display = 'none'; // Eliminar actividad 4 para 40 minutos
+            }
+        }
+
+        function navigateTo(id) {
+            var element = document.getElementById(id);
+            window.scrollTo({
+                top: element.offsetTop,
+                behavior: 'smooth'
+            });
+        }
+    </script>
+</head>
+<body onload="updateActivities()">
+
+<div class="header">
+    <h1>Playbook-P2-M10</h1>
+</div>
+
+<div class="container">
+    <div class="dropdown">
+        <label for="time-select">Tiempo efectivo de Clase:</label>
+        <select id="time-select" onchange="updateActivities()">
+            <option value="50">50 minutos</option>
+            <option value="45">45 minutos</option>
+            <option value="40">40 minutos</option>
+        </select>
+    </div>
+
+    <h2 id="selected-time" class="time-title">Tiempo efectivo de clase: 50 minutos</h2>
+<!-- Actividad 0 -->
+<div id="activity-0" class="activity">
+    <div class="banner" onclick="toggleContent('revision_mision')">
+        <div class="title">📚 Actividad 0: Revisión de Misión ⏰ Tiempo: No especificado</div>
+        <div class="subtitle">Revisar la disponibilidad de materiales (Magic Boards).</div>
+    </div>
+    <div id="revision_mision" class="content">
+        <table>
+            <tr>
+                <td><strong>PASO 1 (No especificado):</strong> Proyectar Diapositiva 1: Revisar la disponibilidad de materiales (Magic Boards).</td>
+                <td><strong>DIÁLOGO SUGERIDO:</strong> No hay diálogo para los estudiantes, esta actividad es interna del profesor.</td>
+            </tr>
+        </table>
+    </div>
+</div>
+<!-- Actividad 1 -->
+<div id="activity-1" class="activity">
+    <div class="banner" onclick="toggleContent('saludo_ritual_gnius_club')">
+        <div class="title">🎉 Actividad 1: Saludo y Ritual Gnius Club ⏰ Tiempo: 3 minutos</div>
+        <div class="subtitle">Saludar a los estudiantes y presentar el tema del día.</div>
+    </div>
+    <div id="saludo_ritual_gnius_club" class="content">
+        <table>
+            <tr>
+                <td><strong>PASO 1 (0.5 minutos):</strong> Proyectar Diapositiva 2: Saludar a los estudiantes por su nombre y presentar el tema del día.</td>
+                <td><strong>DIÁLOGO SUGERIDO:</strong> "¡Hola Genios! ¿Listos para aprender algo increíble hoy? Hoy vamos a ver cómo la programación puede cambiar el mundo a través de conceptos básicos que aprenderemos juntos."</td>
+            </tr>
+            <tr>
+                <td><strong>PASO 2 (1 minuto):</strong> Proyectar Diapositiva 3: Pedir que elijan una posición para indicar su estado de ánimo.</td>
+                <td><strong>DIÁLOGO SUGERIDO:</strong> "Si están emocionados por aprender algo nuevo, ¡levanten los brazos! Si necesitan un poco más de energía, crucen los brazos."</td>
+            </tr>
+            <tr>
+                <td><strong>PASO 3 (0.5 minutos):</strong> Proyectar Diapositiva 4: Guiar a los estudiantes en el ritual de agradecimiento.</td>
+                <td><strong>DIÁLOGO SUGERIDO:</strong> "Ahora, vamos a juntar nuestras manos y dar las gracias por lo que vamos a aprender hoy. ¡Gracias por estar aquí, Genios! Hoy va a ser un gran día de aprendizaje y diversión."</td>
+            </tr>
+            <tr>
+                <td><strong>PASO 4 (1 minuto):</strong> Proyectar Diapositiva 5: Explicar los tres objetivos del día.</td>
+                <td><strong>DIÁLOGO SUGERIDO:</strong> "Hoy tenemos tres grandes objetivos: 1) Aprender conceptos básicos de programación. 2) Explorar cómo la programación se usa en cosas cotidianas. 3) Trabajar en equipo para repasar los conceptos aprendidos y enfrentarnos a un reto."</td>
+            </tr>
+        </table>
+    </div>
+</div>
+<!-- Actividad 2 -->
+<div id="activity-2" class="activity">
+    <div class="banner" onclick="toggleContent('innovacion_dia')">
+        <div class="title">💡 Actividad 2: Innovación del Día ⏰ Tiempo: 4.5 minutos</div>
+        <div class="subtitle">Explicar el impacto de la programación en sistemas de domótica.</div>
+    </div>
+    <div id="innovacion_dia" class="content">
+        <table>
+            <tr>
+                <td><strong>PASO 1 (0.5 minutos):</strong> Proyectar Diapositiva 6: Explicar brevemente el impacto de la programación en sistemas de domótica (casas inteligentes).</td>
+                <td><strong>DIÁLOGO SUGERIDO:</strong> "Genios, hoy veremos una innovación fascinante: las casas inteligentes. ¡Imagínense! Los sistemas de estas casas utilizan programación con condicionales para controlar cosas como las luces o la calefacción dependiendo de la temperatura o si hay personas presentes. ¡Es asombroso cómo los condicionales mejoran nuestra vida diaria!"</td>
+            </tr>
+            <tr>
+                <td><strong>PASO 2 (2 minutos):</strong> Proyectar Diapositiva 7: Reproducir un video de 1 minuto sobre sistemas de casas inteligentes y su uso de condicionales.</td>
+                <td><strong>DIÁLOGO SUGERIDO:</strong> "Vamos a ver cómo las casas inteligentes pueden encender las luces automáticamente o ajustar la temperatura dependiendo de lo que ocurre a su alrededor, ¡todo gracias a los condicionales en la programación!"</td>
+            </tr>
+            <tr>
+                <td><strong>PASO 3 (2 minutos):</strong> Proyectar Diapositiva 8: Hacer preguntas para que los estudiantes reflexionen sobre el uso de condicionales en las casas inteligentes y el impacto del debugging.</td>
+                <td><strong>DIÁLOGO SUGERIDO:</strong> "¿Cómo creen que las casas inteligentes usan la programación para mejorar nuestras vidas? ¿Qué creen que pasaría si un error hiciera que la calefacción no funcionara correctamente en invierno? ¡Imaginemos cómo un pequeño error en la programación podría afectar toda una casa!"</td>
+            </tr>
+        </table>
+    </div>
+</div>
+<!-- Actividad 3 -->
+<div id="activity-3" class="activity">
+    <div class="banner" onclick="toggleContent('brain_gym')">
+        <div class="title">🧠 Actividad 3: Brain Gym ⏰ Tiempo: 7.5 minutos</div>
+        <div class="subtitle">Ejercitar las mentes aprendiendo sobre condicionales y depuración en Minecraft.</div>
+    </div>
+    <div id="brain_gym" class="content">
+        <table>
+            <tr>
+                <td><strong>PASO 1 (0.5 minutos):</strong> Proyectar Diapositiva 9: Anunciar la actividad Brain Gym y crear entusiasmo.</td>
+                <td><strong>DIÁLOGO SUGERIDO:</strong> "¡Genios! Hoy vamos a ejercitar nuestras mentes aprendiendo sobre condicionales y depuración (debugging) en Minecraft: Viaje Acuático. Además, escondí un Easter Egg en la explicación. ¡Presten atención y podrían ganar Mon-e extra!"</td>
+            </tr>
+            <tr>
+                <td><strong>PASO 2 (1 minuto):</strong> Proyectar Diapositiva 10: Explicar el concepto de condicionales con un ejemplo cotidiano.</td>
+                <td><strong>DIÁLOGO SUGERIDO:</strong> "¿Alguna vez han decidido si llevar un paraguas? Si está lloviendo, lo llevamos; si no, no lo llevamos. ¡Eso es un condicional! Le preguntamos a la computadora una condición, y dependiendo de la respuesta, tomamos una decisión."</td>
+            </tr>
+            <tr>
+                <td><strong>PASO 3 (1 minuto):</strong> Proyectar Diapositiva 11: Explicar cómo usar condicionales en Minecraft para que Alex o Steve tomen decisiones.</td>
+                <td><strong>DIÁLOGO SUGERIDO:</strong> "En Minecraft: Viaje Acuático, Alex también toma decisiones usando condicionales. Si Alex al pararse en 'coral azul', gira a la derecha; si no se para en coral azul, sigue explorando. ¡Los condicionales hacen que Alex sea más inteligente!"</td>
+            </tr>
+            <tr>
+                <td><strong>PASO 4 (1 minuto):</strong> Proyectar Diapositiva 12: Guiar a los estudiantes a través de un ejemplo donde Alex use condicionales.</td>
+                <td><strong>DIÁLOGO SUGERIDO:</strong> "Vamos a ver un ejemplo en Minecraft: Si Alex se para sobre un coral rojo, gira a la derecha; si no, sigue explorando. ¡Miren cómo Alex decide qué hacer usando condicionales!"</td>
+            </tr>
+            <tr>
+                <td><strong>PASO 5 (1 minuto):</strong> Proyectar Diapositiva 13: Explicar el concepto de depuración con un ejemplo cotidiano.</td>
+                <td><strong>DIÁLOGO SUGERIDO:</strong> "¿Alguna vez armaron un rompecabezas y una pieza no encajaba? Revisamos, encontramos el error y lo corregimos. ¡Eso es depuración! Revisamos el código para arreglar errores, ¡igual que con el rompecabezas!"</td>
+            </tr>
+            <tr>
+                <td><strong>PASO 6 (1 minuto):</strong> Proyectar Diapositiva 14: Explicar cómo depurar un error en Minecraft.</td>
+                <td><strong>DIÁLOGO SUGERIDO:</strong> "En Minecraft, si Alex nada en círculos en lugar de ir hacia el cofre, algo salió mal en el código. ¡Es hora de depurar! Revisamos los bloques, encontramos el error y lo corregimos."</td>
+            </tr>
+            <tr>
+                <td><strong>PASO 7 (1 minuto):</strong> Proyectar Diapositiva 15: Guiar a los estudiantes a través de un ejemplo donde Alex use depuración para corregir un error.</td>
+                <td><strong>DIÁLOGO SUGERIDO:</strong> "Supongamos que Alex debe nadar hacia adelante, pero en lugar de eso, gira en círculos. Vamos a depurar el código: eliminamos el bloque incorrecto y colocamos el correcto para que Alex siga hacia el cofre."</td>
+            </tr>
+            <tr>
+                <td><strong>PASO 8 (1 minuto):</strong> Proyectar Diapositiva 16: Guiar a los estudiantes en una reflexión sobre cómo los condicionales y la depuración simplifican tareas.</td>
+                <td><strong>DIÁLOGO SUGERIDO:</strong> "Los condicionales nos ayudan a tomar decisiones, y la depuración nos permite corregir errores. ¿En qué situaciones diarias creen que podrían usar un condicional o depuración?"</td>
+            </tr>
+            <tr>
+                <td><strong>PASO 9 (0.5 minutos):</strong> Proyectar Diapositiva 17: Revisar los objetivos del día, repasando lo aprendido.</td>
+                <td><strong>DIÁLOGO SUGERIDO:</strong> "¡Genios, lo hicieron excelente! Hoy aprendimos sobre condicionales y depuración, y cómo podemos tomar decisiones y corregir errores. ¡Ahora estamos listos para el siguiente reto!"</td>
+            </tr>
+        </table>
+    </div>
+</div>
+<!-- Actividad 4 -->
+<div id="activity-4" class="activity">
+    <div class="banner" onclick="toggleContent('brain_vitamin')">
+        <div class="title">💡 Actividad 4: Brain Vitamin ⏰ Tiempo: 2 minutos</div>
+        <div class="subtitle">Preparar a los estudiantes para seguir instrucciones en la programación.</div>
+    </div>
+    <div id="brain_vitamin" class="content">
+        <table>
+            <tr>
+                <td><strong>PASO 1 (0.5 minutos):</strong> Proyectar Diapositiva 18: Explicar que harán un ejercicio corto para preparar su cerebro.</td>
+                <td><strong>DIÁLOGO SUGERIDO:</strong> "¡Genios! Antes de seguir programando, vamos a activar nuestras mentes con un ejercicio rápido. Este reto mental ayudará a que sus cerebros se preparen para trabajar con secuencias y condicionales. ¡Vamos a hacerlo divertido!"</td>
+            </tr>
+            <tr>
+                <td><strong>PASO 2 (1 minuto):</strong> Proyectar Diapositiva 19: Guiar a los estudiantes a seguir una serie de instrucciones rápidas que involucren movimientos físicos.</td>
+                <td><strong>DIÁLOGO SUGERIDO:</strong> "Vamos a hacer lo siguiente: cuando diga 'arriba', toquen su cabeza; cuando diga 'abajo', toquen los pies. ¡Vamos a ver cuán rápido pueden seguir estas secuencias!"</td>
+            </tr>
+            <tr>
+                <td><strong>PASO 3 (0.5 minutos):</strong> Sin diapositiva: Explicar que este ejercicio les ayuda a pensar rápido y seguir instrucciones.</td>
+                <td><strong>DIÁLOGO SUGERIDO:</strong> "¡Genial, Genios! Este ejercicio les ayudará a que sus cerebros sigan instrucciones rápidamente, justo como cuando programan. Ahora que ya están activados, estamos listos para el siguiente desafío."</td>
+            </tr>
+        </table>
+    </div>
+</div>
+<!-- Actividad 5 -->
+<div id="activity-5" class="activity">
+    <div class="banner" onclick="toggleContent('team_gnius')">
+        <div class="title">🤝 Actividad 5: Team Gnius ⏰ Tiempo: 2.5 minutos</div>
+        <div class="subtitle">Formar equipos y explicar la importancia de la colaboración.</div>
+    </div>
+    <div id="team_gnius" class="content">
+        <table>
+            <tr>
+                <td><strong>PASO 1 (0.5 minutos):</strong> Proyectar Diapositiva 20: Explicar cómo se formarán los equipos y la importancia de colaborar en las decisiones.</td>
+                <td><strong>DIÁLOGO SUGERIDO:</strong> "¡Genios, ahora es el momento de trabajar en equipo! Formaremos equipos de 2 personas para el próximo reto. Uno será el Programador Principal y el otro será el Asistente de Programación. ¡Ambos tendrán un rol importante para resolver el desafío juntos!"</td>
+            </tr>
+            <tr>
+                <td><strong>PASO 2 (0.5 minutos):</strong> Proyectar Diapositiva 21: Mostrar un temporizador para que los estudiantes se organicen en equipos y recojan los materiales.</td>
+                <td><strong>DIÁLOGO SUGERIDO:</strong> "Tienen 30 segundos para elegir a su compañero. ¡Elijan sabiamente, Genios! Trabajar en equipo es clave para resolver el desafío. ¡Vamos a prepararnos!"</td>
+            </tr>
+            <tr>
+                <td><strong>PASO 3 (0.5 minutos):</strong> Proyectar Diapositiva 22: Explicar que cada estudiante usará su Magic Tablet y deberán trabajar en conjunto.</td>
+                <td><strong>DIÁLOGO SUGERIDO:</strong> "Cada uno de ustedes usará su Magic Tablet para realizar el desafío. Aunque cada uno tiene su dispositivo, deberán colaborar y ayudarse mutuamente para lograr el objetivo. ¡El trabajo en equipo es lo que hará la diferencia!"</td>
+            </tr>
+            <tr>
+                <td><strong>PASO 4 (0.5 minutos):</strong> Proyectar Diapositiva 23: Mostrar un temporizador de 30 segundos para que los estudiantes se preparen.</td>
+                <td><strong>DIÁLOGO SUGERIDO:</strong> "Tienen 30 segundos para asegurarse de que sus Magic Tablets están listas y conectadas. ¡Nos preparamos para el reto!"</td>
+            </tr>
+            <tr>
+                <td><strong>PASO 5 (0.5 minutos):</strong> Sin diapositiva: Explicar la importancia de la colaboración y la comunicación entre los miembros del equipo.</td>
+                <td><strong>DIÁLOGO SUGERIDO:</strong> "¡Genios, ya tienen todo listo! Recuerden que la colaboración es clave. Aunque cada uno usará su tablet, trabajarán juntos para decidir las mejores estrategias. ¡El trabajo en equipo nos hará invencibles!"</td>
+            </tr>
+        </table>
+    </div>
+</div>
+<!-- Actividad 6 -->
+<div id="activity-6" class="activity">
+    <div class="banner" onclick="toggleContent('challenge')">
+        <div class="title">⚙️ Actividad 6: Challenge ⏰ Tiempo: 15.5 minutos</div>
+        <div class="subtitle">Los estudiantes enfrentarán tres niveles de reto: ROOKIE, MASTER y HACKER.</div>
+    </div>
+    <div id="challenge" class="content">
+        <table>
+            <tr>
+                <td><strong>PASO 1 (1 minuto):</strong> Proyectar Diapositiva 24: Presentar la portada de "Challenge" y explicar los tres niveles de reto.</td>
+                <td><strong>DIÁLOGO SUGERIDO:</strong> "¡Genios, ha llegado el momento del reto! Hoy enfrentaremos tres diferentes niveles: ROOKIE, MASTER y HACKER. Cada uno tiene un nivel de dificultad diferente. ¡Elijan el que más les guste y demuestren lo que han aprendido!"</td>
+            </tr>
+            <tr>
+                <td><strong>PASO 2 (1 minuto):</strong> Proyectar Diapositiva 25: Explicar cada nivel y sus descripciones para que los estudiantes decidan cuál prefieren.</td>
+                <td><strong>DIÁLOGO SUGERIDO:</strong> "Aquí están los tres desafíos: ROOKIE, donde escribirán instrucciones sencillas para moverse por el salón usando condicionales; MASTER, donde usarán condicionales y bucles para optimizar sus pasos; y HACKER, donde escribirán secuencias largas y avanzadas usando varios condicionales y bucles."</td>
+            </tr>
+            <tr>
+                <td><strong>PASO 3 (10 minutos):</strong> Proyectar Diapositiva 26: Explicar que deben escribir los pasos de su secuencia utilizando condicionales y bucles.</td>
+                <td><strong>DIÁLOGO SUGERIDO:</strong> "Ahora que han elegido su desafío, es momento de escribir cada paso de su secuencia usando condicionales y bucles en sus Magic Tablets. ¡Recuerden que la precisión es clave!"</td>
+            </tr>
+            <tr>
+                <td><strong>PASO 4 (0.5 minutos):</strong> Sin diapositiva: Explicar que intercambiarán sus tablets con su compañero para que ellos sigan las instrucciones.</td>
+                <td><strong>DIÁLOGO SUGERIDO:</strong> "Cuando terminen de escribir sus secuencias, intercambien las Magic Tablets con su compañero. Ellos seguirán las instrucciones que ustedes escribieron, ¡así sabremos si el código es claro y funciona bien!"</td>
+            </tr>
+            <tr>
+                <td><strong>PASO 5 (10 minutos):</strong> Proyectar Diapositiva 27: Guiar a los estudiantes mientras siguen las instrucciones que escribió su compañero.</td>
+                <td><strong>DIÁLOGO SUGERIDO:</strong> "Ahora, sigan las instrucciones de su compañero paso a paso. Verifiquen si cada acción es clara y si funciona como debería. ¡Vamos a ver qué tan bien lograron programar!"</td>
+            </tr>
+            <tr>
+                <td><strong>PASO 6 (3 minutos):</strong> Proyectar Diapositiva 28: Revisar los resultados y fomentar la reflexión sobre la claridad del código y el uso de condicionales y bucles.</td>
+                <td><strong>DIÁLOGO SUGERIDO:</strong> "¡Increíble trabajo, Genios! Ahora reflexionemos: ¿fueron claras las instrucciones? ¿Los condicionales y bucles ayudaron a mejorar el código? ¡Compartan sus experiencias y qué desafíos encontraron!"</td>
+            </tr>
+        </table>
+    </div>
+</div>
+<!-- Actividad 7 -->
+<div id="activity-7" class="activity">
+    <div class="banner" onclick="toggleContent('easter_egg')">
+        <div class="title">🎯 Actividad 7: Easter Egg ⏰ Tiempo: 3 minutos</div>
+        <div class="subtitle">Un reto sorpresa relacionado con la depuración.</div>
+    </div>
+    <div id="easter_egg" class="content">
+        <table>
+            <tr>
+                <td><strong>PASO 1 (0.5 minutos):</strong> Proyectar Diapositiva 29: Anunciar que el Easter Egg ha llegado y que es un reto relacionado con la depuración.</td>
+                <td><strong>DIÁLOGO SUGERIDO:</strong> "¡Genios, llegó el momento del Easter Egg! Este reto sorpresa está relacionado con la depuración. Presten atención, porque ahora deberán responder una pregunta importante. ¿Quién será el Genio que descubra la respuesta?"</td>
+            </tr>
+            <tr>
+                <td><strong>PASO 2 (0.5 minutos):</strong> Proyectar Diapositiva 30: Mostrar la pregunta del Easter Egg: "¿Para qué nos sirve una depuración?"</td>
+                <td><strong>DIÁLOGO SUGERIDO:</strong> "Aquí está el reto oculto: ¿Para qué nos sirve una depuración? La depuración es clave para que el código funcione bien, pero quiero escuchar sus respuestas. ¡Vamos a ver quién ha estado prestando atención!"</td>
+            </tr>
+            <tr>
+                <td><strong>PASO 3 (1 minuto):</strong> Sin diapositiva: Elegir a tres estudiantes para que den su respuesta en voz baja.</td>
+                <td><strong>DIÁLOGO SUGERIDO:</strong> "Voy a elegir a tres Genios para que me digan su respuesta en voz baja. ¿Listos? ¿Para qué nos sirve una depuración? Vamos a ver quién tiene la respuesta clara."</td>
+            </tr>
+            <tr>
+                <td><strong>PASO 4 (1 minuto):</strong> Proyectar Diapositiva 31: Mostrar la respuesta correcta y felicitar a los que acertaron.</td>
+                <td><strong>DIÁLOGO SUGERIDO:</strong> "¡La respuesta correcta es… La depuración nos ayuda a encontrar y corregir errores en nuestro código, para que funcione correctamente! ¡Felicidades a quienes respondieron bien, ganan Mon-e extra por su gran atención!"</td>
+            </tr>
+        </table>
+    </div>
+</div>
+<!-- Actividad 8 -->
+<div id="activity-8" class="activity">
+    <div class="banner" onclick="toggleContent('honor_dojo')">
+        <div class="title">🎓 Actividad 8: Honor de Dojo ⏰ Tiempo: 5 minutos</div>
+        <div class="subtitle">Reflexión sobre los objetivos del día y cierre de la clase.</div>
+    </div>
+    <div id="honor_dojo" class="content">
+        <table>
+            <tr>
+                <td><strong>PASO 1 (0.5 minutos):</strong> Proyectar Diapositiva 32: Revisar los tres objetivos principales de la clase y cómo los estudiantes los han logrado.</td>
+                <td><strong>DIÁLOGO SUGERIDO:</strong> "¡Genios, antes de despedirnos, vamos a revisar lo que logramos hoy! Aprendimos sobre condicionales y depuración y cómo aplicar estas herramientas en nuestros desafíos. ¡Gran trabajo, equipo!"</td>
+            </tr>
+            <tr>
+                <td><strong>PASO 2 (0.5 minutos):</strong> Sin diapositiva: Agradecer a todo el grupo por el esfuerzo colectivo durante las actividades.</td>
+                <td><strong>DIÁLOGO SUGERIDO:</strong> "Hoy, todo el grupo hizo un esfuerzo increíble. Cada uno de ustedes ha contribuido con su genio en los retos y el trabajo en equipo. ¡Felicidades por su dedicación y colaboración!"</td>
+            </tr>
+            <tr>
+                <td><strong>PASO 3 (0.5 minutos):</strong> Proyectar Diapositiva 33: Guiar a los estudiantes en una breve reflexión sobre el aprendizaje de hoy.</td>
+                <td><strong>DIÁLOGO SUGERIDO:</strong> "Hoy aprendimos que los condicionales nos ayudan a tomar decisiones, y la depuración nos permite corregir errores. ¿Qué les sorprendió más? ¿Cómo creen que podrían usar estos conceptos en otros proyectos?"</td>
+            </tr>
+            <tr>
+                <td><strong>PASO 4 (3 minutos):</strong> Proyectar Diapositiva 34: Recordar a los estudiantes que deben recoger el salón antes de finalizar la clase.</td>
+                <td><strong>DIÁLOGO SUGERIDO:</strong> "¡Y como siempre, Genios, vamos a honrar nuestro espacio! Recojan sus tablets y materiales. ¡Dejemos el salón tan limpio como nuestros códigos deben ser!"</td>
+            </tr>
+        </table>
+    </div>
+</div>
+    </div> <!-- Cierre del container -->
+
+    <!-- Scripts adicionales si es necesario -->
+    <script>
+        // Agregar scripts adicionales aquí si es necesario
+    </script>
+
+</body>
+</html>
